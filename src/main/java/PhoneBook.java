@@ -1,20 +1,23 @@
 import java.util.HashMap;
 
 public class PhoneBook {
-    private HashMap<String, String> contacts;
+    private HashMap<String, String> contactsByNumber;
+    private HashMap<String, String> contactsByName;
 
     public PhoneBook() {
-        contacts = new HashMap<>();
+        contactsByName = new HashMap<>();
+        contactsByNumber = new HashMap<>();
     }
 
     public int add(String name, String number) {
-        if (!contacts.containsKey(name)) {
-            contacts.put(name, number);
+        if (!contactsByName.containsKey(name) && !contactsByNumber.containsKey(number)) {
+            contactsByNumber.put(number, name);
+            contactsByName.put(name, number);
         }
-        return contacts.size();
+        return contactsByNumber.size();
     }
 
     public String findByNumber(String number) {
-        return null;
+        return contactsByNumber.get(number);
     }
 }
