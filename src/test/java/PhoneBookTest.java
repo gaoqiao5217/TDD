@@ -55,7 +55,7 @@ public class PhoneBookTest {
     }
 
     @Test
-    public void testPrintAllNames() {
+    public void printAllNamesTest() {
         phoneBook.add("Alice", "12345");
         phoneBook.add("Bob", "67890");
 

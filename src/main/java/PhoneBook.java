@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.TreeSet;
 
 public class PhoneBook {
     private HashMap<String, String> contactsByNumber;
@@ -26,5 +27,6 @@ public class PhoneBook {
     }
 
     public void printAllNames() {
+        new TreeSet<>(contactsByName.keySet()).forEach(System.out::println);
     }
 }
