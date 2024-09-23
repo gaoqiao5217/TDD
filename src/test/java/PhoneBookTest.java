@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -49,5 +52,20 @@ public class PhoneBookTest {
 
         foundNumber = phoneBook.findByName("Bob");
         assertNull(foundNumber, "Should return null for non-existing name");
+    }
+
+    @Test
+    public void testPrintAllNames() {
+        phoneBook.add("Alice", "12345");
+        phoneBook.add("Bob", "67890");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        phoneBook.printAllNames();
+        System.setOut(originalOut);
+        String expectedOutput = "Alice\nBob" + System.lineSeparator();
+        assertEquals(expectedOutput, outContent.toString());
     }
 }
