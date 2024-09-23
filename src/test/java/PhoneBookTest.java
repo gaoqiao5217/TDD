@@ -36,4 +36,18 @@ public class PhoneBookTest {
         foundName = phoneBook.findByNumber("11111");
         assertNull(foundName, "Should return null for non-existing number");
     }
+
+    @Test
+    public void findByNameTest() {
+        String name = "Alice";
+        String number = "12345";
+
+        phoneBook.add(name, number);
+
+        String foundNumber = phoneBook.findByName(name);
+        assertEquals(number, foundNumber, "Should find the correct number for Alice");
+
+        foundNumber = phoneBook.findByName("Bob");
+        assertNull(foundNumber, "Should return null for non-existing name");
+    }
 }
