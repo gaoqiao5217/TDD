@@ -2,6 +2,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class PhoneBookTest {
     private PhoneBook phoneBook;
@@ -19,5 +20,20 @@ public class PhoneBookTest {
             assertEquals(i+1, count, "Contact count should be "
                     + (i+1) + " after adding a contact " + i);
         }
+    }
+
+    @Test
+    public void findByNumberTest(){
+        phoneBook.add("Alice", "12345");
+        phoneBook.add("Bob", "67890");
+
+        String foundName = phoneBook.findByNumber("12345");
+        assertEquals("Alice", foundName, "Should find Alice by number 12345");
+
+        foundName = phoneBook.findByNumber("67890");
+        assertEquals("Bob", foundName, "Should find Bob by number 67890");
+
+        foundName = phoneBook.findByNumber("11111");
+        assertNull(foundName, "Should return null for non-existing number");
     }
 }
